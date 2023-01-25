@@ -22,4 +22,4 @@ film_df_with_ratings = film_df.join(
 )
 
 # Show the 5 first results
-print(film_df_with_ratings.limit(5))
+print(film_df_with_ratings.show(5))
