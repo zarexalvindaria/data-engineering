@@ -24,10 +24,3 @@ film_df = film_df.assign(
     rental_rate_dollar=rental_rate_expanded[0],
     rental_rate_cents=rental_rate_expanded[1],
 )
-
-
-exit
-quit/
-:q
-quit
-q!
