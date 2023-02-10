@@ -19,7 +19,7 @@ print(weather_by_month)
 query = """
 SELECT month, 
 	   MAX(tmax), 
-       MIN(tmax)
+       MIN(tmin)
   FROM weather 
  GROUP BY month;
 """
