@@ -27,5 +27,3 @@ schema = {'properties': {
 
 # Write the schema
 singer.write_schema(stream_name="products", schema=schema, key_properties=[])
-
-19774995+zarexalvindaria@users.noreply.github.com
