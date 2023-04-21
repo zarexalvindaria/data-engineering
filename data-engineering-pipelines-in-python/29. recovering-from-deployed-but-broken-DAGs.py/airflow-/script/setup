@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd "$(dirname "$0")/.."
+
+# Airflow requires this flag to be present in order to install through pip
+export SLUGIFY_USES_TEXT_UNIDECODE=yes
+
+pip install -r requirements.txt
+
+export AIRFLOW__CORE__LOAD_EXAMPLES=False
+# Initialize the DB for local 'real' use
+#airflow initdb
+
+# Initialize the DB for unit-testing mode
+export AIRFLOW__CORE__UNIT_TEST_MODE=True
+
+airflow variables --set environment dev
+airflow initdb

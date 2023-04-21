@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd "$(dirname "$0")/.."
+
+# Run Flake to make sure things are stylish.
+flake8 --max-line-length 120 --max-complexity 12 dags plugins tests

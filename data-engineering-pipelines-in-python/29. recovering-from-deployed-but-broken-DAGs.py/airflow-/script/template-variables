@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+
+import json
+import os
+
+import jinja2
+
+
+def current_environment():
+    code_deploy_environment = os.environ.get("DEPLOYMENT_GROUP_NAME")
+    if code_deploy_environment is None:
+        return "dev"
+    else:
+        return code_deploy_environment.split("-")[-1]
+
+
+template_loader = jinja2.FileSystemLoader(searchpath="variables/")
+template_environment = jinja2.Environment(loader=template_loader)
+
+variables = {
+    "env": current_environment(),
+}
+
+renders = {}
+
+for template in template_environment.list_templates():
+    # Render template
+    result = json.loads(template_environment.get_template(template).render(variables))
+    # Combine all templates in 1 file
+    renders = {**renders, **result}
+
+# Output to standard output
+print(json.dumps(renders))
