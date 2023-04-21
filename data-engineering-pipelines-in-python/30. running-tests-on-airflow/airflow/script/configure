@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd "$(dirname "$0")/.."
+
+# Import Airflow variables into Airflow
+pipenv run python3 script/template-variables > /tmp/variables.json
+pipenv run airflow variables --import /tmp/variables.json
+
+# Import Airflow pools into Airflow
+# TODO: We might want to apply some templating to the pools.
+pipenv run airflow pool --import pools/pools.json
