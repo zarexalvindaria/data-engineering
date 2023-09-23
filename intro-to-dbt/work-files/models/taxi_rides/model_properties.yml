@@ -1,0 +1,13 @@
+version: 2
+
+models:
+- name: taxi_rides_raw
+  columns:
+    - name: fare_amount
+      tests:
+        - not_null
+    - name: payment_type
+      tests:
+        - not_null
+        - accepted_values:
+            values: [1, 2, 3, 4, 5, 6]
